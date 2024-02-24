@@ -38,7 +38,7 @@ export function PlayersTable(props: PlayersTableProps) {
       <div className="m-2 text-center">
         Online players: {rows.length}
       </div>
-      <SearchBar nameFilter={textFilter} onFilterNameChange={setTextFilter} />
+      <SearchBar filterText={textFilter} onFilterTextChange={setTextFilter} />
       <table className="w-auto m-auto table-auto border-collapse border border-slate-200 text-center">
         <thead>
         <tr>
