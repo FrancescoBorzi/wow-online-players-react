@@ -36,7 +36,7 @@ export function PlayersTable(props: PlayersTableProps) {
   return (
     <>
       <div className="m-2 text-center">
-        Online players: {rows.length}
+        Online players: <strong>{rows.length}</strong>
       </div>
       <SearchBar filterText={textFilter} onFilterTextChange={setTextFilter} />
       <table className="w-auto m-auto table-auto border-collapse border border-slate-200 text-center">
