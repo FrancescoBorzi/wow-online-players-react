@@ -17,13 +17,15 @@ export function PlayersTable(props: PlayersTableProps) {
   for (const player of props.players) {
     const filter = textFilter.toLowerCase();
     const playerName = player.name?.toLowerCase();
+    const playerLevel = String(player.level);
     const guildName = player.guildName?.toLowerCase();
     const zoneName = ZONES[player.zone]?.toLowerCase();
 
     if (
       (playerName && playerName.indexOf(filter) !== -1) ||
       (guildName && guildName.indexOf(filter) !== -1) ||
-      (zoneName && zoneName.indexOf(filter) !== -1)
+      (zoneName && zoneName.indexOf(filter) !== -1) ||
+      playerLevel && playerLevel === filter
     ) {
       rows.push(
         <PlayerRow key={player.guid} player={player} />
