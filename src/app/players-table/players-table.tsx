@@ -22,9 +22,9 @@ export function PlayersTable(props: PlayersTableProps) {
     const zoneName = ZONES[player.zone]?.toLowerCase();
 
     if (
-      (playerName && playerName.indexOf(filter) !== -1) ||
-      (guildName && guildName.indexOf(filter) !== -1) ||
-      (zoneName && zoneName.indexOf(filter) !== -1) ||
+      (playerName && playerName.includes(filter)) ||
+      (guildName && guildName.includes(filter)) ||
+      (zoneName && zoneName.includes(filter)) ||
       playerLevel && playerLevel === filter
     ) {
       rows.push(
