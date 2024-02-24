@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Player } from '../app.model';
 import PlayerRow from './player-row/player-row';
 import SearchBar from './search-bar/search-bar';
+import { ZONES } from './zones';
 
 export interface PlayersTableProps {
   players: Player[];
@@ -9,12 +10,21 @@ export interface PlayersTableProps {
 
 export function PlayersTable(props: PlayersTableProps) {
 
-  const [nameFilter, setNameFilter] = useState<string>('');
+  const [textFilter, setTextFilter] = useState<string>('');
 
   const rows: React.JSX.Element[] = [];
 
   for (const player of props.players) {
-    if (player.name.toLowerCase().indexOf(nameFilter.toLowerCase()) !== -1) {
+    const filter = textFilter.toLowerCase();
+    const playerName = player.name?.toLowerCase();
+    const guildName = player.guildName?.toLowerCase();
+    const zoneName = ZONES[player.zone]?.toLowerCase();
+
+    if (
+      (playerName && playerName.indexOf(filter) !== -1) ||
+      (guildName && guildName.indexOf(filter) !== -1) ||
+      (zoneName && zoneName.indexOf(filter) !== -1)
+    ) {
       rows.push(
         <PlayerRow key={player.guid} player={player} />
       );
@@ -23,15 +33,17 @@ export function PlayersTable(props: PlayersTableProps) {
 
   return (
     <>
-      <div>
+      <div className="m-2 text-center">
         Online players: {rows.length}
       </div>
-      <SearchBar nameFilter={nameFilter} onFilterNameChange={setNameFilter} />
-      <table>
+      <SearchBar nameFilter={textFilter} onFilterNameChange={setTextFilter} />
+      <table className="w-auto m-auto table-auto border-collapse border border-slate-200 text-center">
         <thead>
         <tr>
-          <th>Name</th>
-          <th>Level</th>
+          <th className="border border-slate-300 p-2">Character</th>
+          <th className="border border-slate-300 p-2">Level</th>
+          <th className="border border-slate-300 p-2">Guild</th>
+          <th className="border border-slate-300 p-2">Map</th>
         </tr>
         </thead>
         <tbody>
