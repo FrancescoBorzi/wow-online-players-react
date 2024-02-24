@@ -1,4 +1,3 @@
-import styles from './search-bar.module.scss';
 import { Dispatch, SetStateAction } from 'react';
 
 export interface SearchBarProps {
@@ -8,7 +7,7 @@ export interface SearchBarProps {
 
 export function SearchBar(props: SearchBarProps) {
   return (
-    <div className={styles['container']}>
+    <div>
       <input value={props.nameFilter} onChange={(e) => props.onFilterNameChange(e.target.value)} />
     </div>
   );
