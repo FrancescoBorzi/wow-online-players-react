@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import PlayersTable from './players-table/players-table';
 import { Player } from './app.model';
 import { useEffect, useState } from 'react';
